@@ -4,7 +4,21 @@ from .models import AreaEstudioMateria
 
 
 class AreaEstudioMateriaAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        'area'
+    ]
+
+    search_fields = [
+        'area'
+    ]
+
+    list_filter = [
+        'area'
+    ]
+
+    list_display_links = [
+        'area'
+    ]
 
 
 admin.site.register(AreaEstudioMateria, AreaEstudioMateriaAdmin)

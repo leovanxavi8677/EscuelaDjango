@@ -7,3 +7,7 @@ class AreaEstudioMateria(models.Model):
 
     def __str__(self):
         return "{}".format(self.area)
+
+    @property
+    def get_area(self):
+        return "{}".format(self.area)
