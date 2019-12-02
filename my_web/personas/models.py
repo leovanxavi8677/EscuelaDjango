@@ -13,7 +13,7 @@ ESTUDIOS_CHOICES =[
     ('5','Especialidad'),
     ('6','Maestria'),
     ('7','Doctorado'),
-    ('9','Post-Doctorado')
+    ('8','Post-Doctorado')
 ]
 
 NIVEL_ACCESO_CHOICES = [
@@ -39,3 +39,54 @@ class Persona(models.Model):
 
     def __str__(self):
         return "{} {} {}".format(self.nombre, self.apellidoPaterno,self.apellidoMaterno)
+
+    @property
+    def get_nombre_completo(self):
+        return "{} {} {}".format(
+            self.nombre,
+            self.apellidoPaterno,
+            self.apellidoMaterno
+        )
+
+    @property
+    def get_fecha_nacimiento(self):
+        return "{}".format(self.fechaNacimiento)
+
+    @property
+    def get_edad(self):
+        return "{}".format(self.edad)
+
+    @property
+    def get_nivel_estudios(self):
+        if self.nivelEstudios == '1':
+            return "Primaria"
+        if self.nivelEstudios == '2':
+            return "Secundaria"
+        if self.nivelEstudios == '3':
+            return "Bachillerato"
+        if self.nivelEstudios == '4':
+            return "Licenciatura"
+        if self.nivelEstudios == '5':
+            return "Especialidad"
+        if self.nivelEstudios == '6':
+            return "Maestria"
+        if self.nivelEstudios == '7':
+            return "Doctorado"
+        if self.nivelEstudios == '8':
+            return "Post-Doctorado"
+
+    @property
+    def get_genero(self):
+        if self.genero == 'M':
+            return "Masculino"
+        else:
+            return "Femenino"
+
+    @property
+    def get_nivel_acceso(self):
+        if self.nivelAcceso == 'E':
+            return "Estudiante"
+        if self.nivelAcceso == 'C':
+            return "Catedratico"
+        if self.nivelAcceso == 'A':
+            return "Administrativo"

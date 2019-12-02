@@ -18,3 +18,20 @@ class Materia(models.Model):
 
     def __str__(self):
         return "{}".format(self.nombre)
+
+    @property
+    def get_nombre_materia(self):
+        return "{}".format(self.nombre)
+
+    @property
+    def get_estatus_materia(self):
+        if self.estatusMateria == '1':
+            return "Alta"
+        if self.estatusMateria == '2':
+            return "Pendiente"
+        if self.estatusMateria == '3':
+            return "Baja"
+
+    @property
+    def get_area_estudio(self):
+        return "{}".format(self.areaEstudio)

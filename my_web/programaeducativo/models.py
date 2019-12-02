@@ -9,3 +9,7 @@ class ProgramaEducativo(models.Model):
 
     def __str__(self):
         return "{}".format(self.nombre)
+
+    @property
+    def get_nombre_programa_educativo(self):
+        return "{}".format(self.nombre)

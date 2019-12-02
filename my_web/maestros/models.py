@@ -16,4 +16,4 @@ class Maestro(Persona):
     areamaestro = models.ForeignKey(AreaMaestro, help_text="Seleccione un Área",related_name="maestroAreaExpertise", on_delete=models.CASCADE, null=True)
     
     def __str__(self):
-        return "{} {} {}".format(self.cubiculo, self.numeroTrabajador, self.estatus)
+        return "{} {} ".format(self.get_nombre_completo, self.numeroTrabajador)
