@@ -11,3 +11,5 @@ class AreaEstudioMateria(models.Model):
     @property
     def get_area(self):
         return "{}".format(self.area)
+
+

@@ -4,6 +4,7 @@ from .forms import AreaEstudioMateriaForm
 from django.template import loader
 from django.urls import reverse
 from .models import AreaEstudioMateria
+from django.contrib import  messages
 
 def RegistrarAreaEstudioMateria(request):
     if request.method == 'POST':
@@ -11,8 +12,13 @@ def RegistrarAreaEstudioMateria(request):
         form = AreaEstudioMateriaForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            reverse("ListingAreasEstudioMaterias")
+            if AreaEstudioMateria.objects.filter(area=form.cleaned_data['area']):
+                messages.error(request, 'El Área {} ya esta registrada'.format(form.cleaned_data['area']))
+                return HttpResponseRedirect(reverse('RegistrarNuevaAreaEstudioMateria'))
+            else:
+                form.save()
+                return HttpResponseRedirect(reverse('ListingAreasEstudioMaterias'))
+
     else:
 
         ctx = {'form': AreaEstudioMateriaForm()}
