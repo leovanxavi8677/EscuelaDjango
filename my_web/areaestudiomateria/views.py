@@ -30,6 +30,17 @@ def area_estudio__materia_detalle(request, area_id=None):
         area = get_object_or_404(AreaEstudioMateria, pk=area_id)
         if request.method == 'POST':
             form = AreaEstudioMateriaForm(request.POST, instance=area)
+            if form.is_valid():
+                if AreaEstudioMateria.objects.filter(area=form.cleaned_data['area']):
+                    messages.info(request, 'El Área {} ya esta registrada'.format(form.cleaned_data['area']))
+                    return HttpResponseRedirect(reverse('DetalleAreaEstudio',kwargs={
+                        'area_id': area_id
+                    }))
+                else:
+                    form.save()
+                    messages.success(request, 'Se ha actualizado el registro')
+                    return HttpResponseRedirect(reverse('ListingAreasEstudioMaterias'))
+
         else:
             form = AreaEstudioMateriaForm(instance=area)
         ctx ={
