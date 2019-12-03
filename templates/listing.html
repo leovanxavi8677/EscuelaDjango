@@ -1,19 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Listado de Area de Estudio Materia
+    Listado de Registros
 {% endblock %}
 
 
 
 {% block app_content %}
     {{ block.super }}
-<link rel="stylesheet" type="text/css" href="css/StyleMostrarTodasAreasEstudio.css">
-<form class="BuscarAreaEstudioMateria" method="get">
-    <div class="form-group">
-        <input type="search" class="form-control" placeholder="Buscar Area de Estudio" id="buscar" name="buscar" >
-    </div>
-</form>
+
     <table class="table table-hover table-striped">
         <thead class="thead-dark">
             <tr>

@@ -1,10 +1,10 @@
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import AreaEstudioMateriaForm
 from django.template import loader
 from django.urls import reverse
 from .models import AreaEstudioMateria
-from django.contrib import  messages
+from django.contrib import messages
 
 def RegistrarAreaEstudioMateria(request):
     if request.method == 'POST':
@@ -17,6 +17,7 @@ def RegistrarAreaEstudioMateria(request):
                 return HttpResponseRedirect(reverse('RegistrarNuevaAreaEstudioMateria'))
             else:
                 form.save()
+                messages.success(request, "Se ha registrado existosamente el Área de Estudio {}".format(form.cleaned_data['area']))
                 return HttpResponseRedirect(reverse('ListingAreasEstudioMaterias'))
 
     else:
@@ -24,24 +25,52 @@ def RegistrarAreaEstudioMateria(request):
         ctx = {'form': AreaEstudioMateriaForm()}
         return render(request, 'areaestudiomateria/RegistrarAreaEstudioMateria.html', ctx)
 
+def area_estudio__materia_detalle(request, area_id=None):
+    if area_id is not None:
+        area = get_object_or_404(AreaEstudioMateria, pk=area_id)
+        if request.method == 'POST':
+            form = AreaEstudioMateriaForm(request.POST, instance=area)
+        else:
+            form = AreaEstudioMateriaForm(instance=area)
+        ctx ={
+            'form': form
+        }
+        template = loader.get_template('areaestudiomateria/AreaEstudioDetalle.html')
+        return HttpResponse(template.render(ctx, request))
+    raise Http404("No existe el area de estudio de seleccionada")
+
+
+
 """
 Obtener todas las materias
 """
 def ObtenerTodosAreasEstudioMateria(request):
-    areas = AreaEstudioMateria.objects.all()
+    query = request.GET.get('buscar')
+    if query:
+        query = request.GET.get('buscar')
+        areas = AreaEstudioMateria.objects.filter(area__icontains=query)
+    else:
+        areas = AreaEstudioMateria.objects.all()
     lista = []
     for index, area in enumerate(areas):
         lista.append(
             {
                 0: str(index + 1),
-                1: area.get_area
+                1: area.get_area,
+                'link': {
+                    'url': reverse('DetalleAreaEstudio', kwargs={
+                        'area_id': area.id
+                    }),
+                    'label': 'Detalle'
+
+                },
 
             }
         )
     lista_data = {
         'lista': lista,
         'columnas':[
-            'Id', 'Nombre',
+            'Id', 'Nombre', 'Detalle'
         ]
     }
     context = {

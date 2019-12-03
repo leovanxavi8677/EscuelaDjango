@@ -1,0 +1,19 @@
+{% extends "admin/base_site.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+
+Leo
+
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ form.media.css }}
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+    {{ form.media.js }}
+{% endblock %}
