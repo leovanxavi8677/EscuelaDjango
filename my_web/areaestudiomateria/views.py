@@ -5,6 +5,8 @@ from django.template import loader
 from django.urls import reverse
 from .models import AreaEstudioMateria
 from django.contrib import messages
+from django.core.paginator import Paginator
+
 
 def RegistrarAreaEstudioMateria(request):
     if request.method == 'POST':
@@ -17,13 +19,15 @@ def RegistrarAreaEstudioMateria(request):
                 return HttpResponseRedirect(reverse('RegistrarNuevaAreaEstudioMateria'))
             else:
                 form.save()
-                messages.success(request, "Se ha registrado existosamente el Área de Estudio {}".format(form.cleaned_data['area']))
+                messages.success(request, "Se ha registrado existosamente el Área de Estudio {}".format(
+                    form.cleaned_data['area']))
                 return HttpResponseRedirect(reverse('ListingAreasEstudioMaterias'))
 
     else:
 
         ctx = {'form': AreaEstudioMateriaForm()}
         return render(request, 'areaestudiomateria/RegistrarAreaEstudioMateria.html', ctx)
+
 
 def area_estudio__materia_detalle(request, area_id=None):
     if area_id is not None:
@@ -33,7 +37,7 @@ def area_estudio__materia_detalle(request, area_id=None):
             if form.is_valid():
                 if AreaEstudioMateria.objects.filter(area=form.cleaned_data['area']):
                     messages.info(request, 'El Área {} ya esta registrada'.format(form.cleaned_data['area']))
-                    return HttpResponseRedirect(reverse('DetalleAreaEstudio',kwargs={
+                    return HttpResponseRedirect(reverse('DetalleAreaEstudio', kwargs={
                         'area_id': area_id
                     }))
                 else:
@@ -43,7 +47,7 @@ def area_estudio__materia_detalle(request, area_id=None):
 
         else:
             form = AreaEstudioMateriaForm(instance=area)
-        ctx ={
+        ctx = {
             'form': form
         }
         template = loader.get_template('areaestudiomateria/AreaEstudioDetalle.html')
@@ -51,10 +55,11 @@ def area_estudio__materia_detalle(request, area_id=None):
     raise Http404("No existe el area de estudio de seleccionada")
 
 
-
 """
 Obtener todas las materias
 """
+
+
 def ObtenerTodosAreasEstudioMateria(request):
     query = request.GET.get('buscar')
     if query:
@@ -63,6 +68,7 @@ def ObtenerTodosAreasEstudioMateria(request):
     else:
         areas = AreaEstudioMateria.objects.all()
     lista = []
+
     for index, area in enumerate(areas):
         lista.append(
             {
@@ -78,14 +84,18 @@ def ObtenerTodosAreasEstudioMateria(request):
 
             }
         )
+    paginator = Paginator(lista, 4)  # paginación
+    page = request.GET.get('page')
+    areas_per_page = paginator.get_page(page)
     lista_data = {
         'lista': lista,
-        'columnas':[
+        'columnas': [
             'Id', 'Nombre', 'Detalle'
         ]
     }
     context = {
         'lista': lista_data,
+        'areas_per_page': areas_per_page,
     }
     template = loader.get_template('areaestudiomateria/MostrarTodasAreasEstudioMaterias.html')
     return HttpResponse(template.render(context, request))
