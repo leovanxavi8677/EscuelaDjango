@@ -90,3 +90,6 @@ class Persona(models.Model):
             return "Catedratico"
         if self.nivelAcceso == 'A':
             return "Administrativo"
+    @property
+    def get_password(self):
+        return "{}".format(self.passwd)

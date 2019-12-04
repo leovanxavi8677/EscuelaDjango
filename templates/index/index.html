@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block title %}
+    Inicio de Sesión
+{% endblock %}
+
+
+
+{% block app_content %}
+    {{ block.super }}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button "Enviar" button_type="submit" button_class="btn-primary" %}
+        {% bootstrap_button "Cancelar" button_type="reset" button_class="btn-danger" %}
+    </form>
+
+{% endblock %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}

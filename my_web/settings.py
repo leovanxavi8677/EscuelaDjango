@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'my_web.areaestudiomateria',
     'my_web.materias',
     'my_web.grupos',
+    'my_web.index',
     'bootstrap4',
 ]
 

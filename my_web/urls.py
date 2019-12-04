@@ -24,6 +24,7 @@ urlpatterns = [
     path(r'grupos/', include('my_web.grupos.urls')),
     path(r'materias/', include('my_web.materias.urls')),
     path(r'programaeducativo/', include('my_web.programaeducativo.urls')),
+    path(r'index/',include('my_web.index.urls')),
 
 
 ]
