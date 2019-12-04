@@ -93,3 +93,7 @@ class Persona(models.Model):
     @property
     def get_password(self):
         return "{}".format(self.passwd)
+
+    @property
+    def get_nivel_acceso_caracter(self):
+        return "{}".format(self.nivelAcceso)

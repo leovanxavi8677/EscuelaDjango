@@ -1,12 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>
-    hola
-</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+    Pagina Principal
+{% endblock %}
+
+{% block bootstrap4_content %} 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Pagina Principal</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li> 
+        {% if nivel_acceso == 'A' %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Area Estudio Materia
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Registrar Nueva Area de Estudio Materia</a>
+            <a class="dropdown-item" href="#">Buscar Area de Estudio Materia</a>
+          </div>
+        </li>
+        {% endif %}
+
+        {% if nivel_acceso == 'A' %}
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Area Maestro
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Registrar Nueva Area de MAestros</a>
+                  <a class="dropdown-item" href="#">Buscar Area de Maestro</a>
+                </div>
+        </li>
+        {% endif %}
+
+        {% if nivel_acceso == 'A' or nivel_acceso == 'C' %}
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Estudiantes
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if nivel_acceso == 'A' %}
+                  <a class="dropdown-item" href="#">Registrar Nueva Estudiante</a>
+                    {% endif %}
+                    {% if nivel_acceso == 'A' or nivel_acceso == 'C' %}
+                  <a class="dropdown-item" href="#">Buscar Estudiante</a>
+                    {% endif %}
+                </div>
+        </li>
+        {% endif %}
+
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Grupos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% if nivel_acceso == 'A' %}
+                  <a class="dropdown-item" href="#">Registrar Nuevo Grupo</a>
+                {% endif %}
+                  <a class="dropdown-item" href="#">Buscar Grupo</a>
+                </div>
+        </li>
+
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Maestros
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% if nivel_acceso == 'A' %}
+                  <a class="dropdown-item" href="#">Registrar Maestro</a>
+                {% endif %}
+                  <a class="dropdown-item" href="#">Buscar Maestro</a>
+                </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Materias
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% if nivel_acceso == 'A' %}
+                  <a class="dropdown-item" href="#">Registrar Materia</a>
+                {% endif %}
+                  <a class="dropdown-item" href="#">Buscar Materia</a>
+                </div>
+        </li>
+
+        {% if nivel_acceso == 'A' %}
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Programas Educativos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Registrar Programa Educativo</a>
+                  <a class="dropdown-item" href="#">Buscar Programa Educativo</a>
+                </div>
+        </li>
+        {% endif %}
+
+
+      
+      </ul>
+    </div>
+  </nav>
+{% endblock %}
+
+
+<h1>{{nivel_acceso}}</h1>

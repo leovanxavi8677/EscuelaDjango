@@ -19,7 +19,12 @@ def iniciar_sesion(request):
                     estudiante = Estudiante.objects.get(matricula=usuario)
                     if Estudiante:
                         if estudiante.get_password == password:
-                            return HttpResponseRedirect(reverse('paginaprincipal'))
+                            context = {
+                                'nivel_acceso': estudiante.get_nivel_acceso_caracter,
+                                'nombre_completo': estudiante.get_nombre_completo,
+                            }
+                            template = loader.get_template('index/PaginaPrincipal.html')
+                            return HttpResponse(template.render(context,request))
                         else:
                             messages.error(request, 'La contraseña no es la correcta')
                             return HttpResponseRedirect(reverse('iniciosesion'))
