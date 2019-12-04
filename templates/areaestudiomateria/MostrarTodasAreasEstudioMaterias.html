@@ -10,12 +10,11 @@
     {{ block.super }}
     {% load staticfiles %}   
 
-    <link rel="stylesheet"  href="{% static 'css/StyleMostrarTodasAreasEstudio.css' %}">
- 
-    <h1>prueba carga de css</h1>
-<form class="BuscarAreaEstudioMateria" method="get">
+    <link rel="stylesheet"  href="{% static 'css/areaestudiomateria/Principal.css' %}">
+<form class="form-inline md-form mr-auto mb-4" method="get">
     <div class="form-group">
         <input type="search" class="form-control" placeholder="Buscar Area de Estudio" id="buscar" name="buscar" >
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </div>
 </form>
     <table class="table table-hover table-striped">
