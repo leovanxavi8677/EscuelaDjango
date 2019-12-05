@@ -22,14 +22,17 @@ def iniciar_sesion(request):
                         if estudiante.get_password == password:
                             request.session['nivel_acceso'] = estudiante.get_nivel_acceso_caracter
                             context = {
-                                'nivel_acceso': estudiante.get_nivel_acceso_caracter,
                                 'nombre_completo': estudiante.get_nombre_completo,
                             }
                             template = loader.get_template('index/PaginaPrincipal.html')
-                            return HttpResponse(template.render(context,request))
+                            return HttpResponse(template.render(context, request))
                         else:
                             messages.error(request, 'La contraseña no es la correcta')
                             return HttpResponseRedirect(reverse('iniciosesion'))
+                    else:
+                        messages.error(request, 'No existe el usuario')
+                        return HttpResponseRedirect(reverse('iniciosesion'))
+
                 if usuario[0] == '2': #si el primer carácter es 2 es una maestro el que esta accediendo
                     pass
                 if usuario[0] == '3': #si el primer carácter es 3 es es un administrativo el que esta accediendo
