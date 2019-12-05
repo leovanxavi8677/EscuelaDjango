@@ -1,9 +1,16 @@
 {% extends "listing.html" %}
 
+
 {% block title %}
     Listado de Grupos
 {% endblock %}
 
+
+
 {% block app_content %}
+
+
+    {% include "index/PaginaPrincipal.html" %}
     {{ block.super }}
+
 {% endblock %}

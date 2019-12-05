@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib import messages
 from ..estudiantes.models import Estudiante
 from ..personas import models as persona
+
 def iniciar_sesion(request):
     if request.method == 'POST':
         form = IndexForm(request.POST)
@@ -19,6 +20,7 @@ def iniciar_sesion(request):
                     estudiante = Estudiante.objects.get(matricula=usuario)
                     if Estudiante:
                         if estudiante.get_password == password:
+                            request.session['nivel_acceso'] = estudiante.get_nivel_acceso_caracter
                             context = {
                                 'nivel_acceso': estudiante.get_nivel_acceso_caracter,
                                 'nombre_completo': estudiante.get_nombre_completo,

@@ -43,6 +43,7 @@ def ObtenerTodosGrupos(request):
     }
     context = {
         'lista': lista_data,
+
     }
     template = loader.get_template('grupos/MostrarTodosGrupos.html')
     return HttpResponse(template.render(context, request))
