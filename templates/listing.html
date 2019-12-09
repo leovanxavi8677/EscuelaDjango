@@ -1,23 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}
-    Listado de Registros
-{% endblock %}
 
 
 
 {% block app_content %}
-    {{ block.super }}
 
-    <table class="table table-hover table-striped">
+    {{ block.super }}
+<form class="form-inline md-form mr-auto mb-4" method="get">
+    <div class="form-group">
+        <input type="search" class="form-control" placeholder="Buscar " id="buscar" name="buscar" >
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+<table class="table table-hover table-striped">
         <thead class="thead-dark">
             <tr>
-                {% for columna in lista.columnas %}
+                {% for columna in lista.columnas  %}
                     <th>{{ columna }}</th>
                 {% endfor %}
             </tr>
         </thead>
-        {% for line in lista.lista %}
+        {% for line in items_per_page%}
             <tr>
                 {% for column, label in line.items %}
                     {% if column == 'link' %}
@@ -33,5 +36,26 @@
             </tr>
         {% endfor %}
     </table>
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if areas_per_page.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">Primera</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ items_per_page.previous_page_number }}">Previa</a></li>
+            {% endif %}
+            <span class="step-links">
+                <ul class="pagination">
+                    {% for page in items_per_page.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+                    {% endfor %}
+                </ul>
+            </span>
+             {% if items_per_page.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ items_per_page.next_page_number }}">Siguiente</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ items_per_page.paginator.num_pages }}">ultimo &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+
 
 {% endblock %}

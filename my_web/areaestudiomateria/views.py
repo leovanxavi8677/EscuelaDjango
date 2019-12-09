@@ -95,7 +95,7 @@ def ObtenerTodosAreasEstudioMateria(request):
     }
     context = {
         'lista': lista_data,
-        'areas_per_page': areas_per_page,
+        'items_per_page': areas_per_page,
     }
     template = loader.get_template('areaestudiomateria/MostrarTodasAreasEstudioMaterias.html')
     return HttpResponse(template.render(context, request))
