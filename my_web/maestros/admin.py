@@ -4,6 +4,7 @@ from .models import Maestro
 
 
 class MaestroAdmin(admin.ModelAdmin):
+    readonly_fields = ('id',)
     #se definen los campos que se mostrarán en el listado
     list_display = [
         'get_nombremaestro',
@@ -31,7 +32,7 @@ class MaestroAdmin(admin.ModelAdmin):
 
     #obtiene el nombre del maestro
     def get_nombremaestro(self, obj):
-        return obj.nombre+ " " + obj.apellidoPaterno+ " " + obj.apellidoMaterno
+        return obj.nombre + " " + obj.apellidoPaterno + " " + obj.apellidoMaterno
     #ordena
     get_nombremaestro.admin_order_field= 'persona__nombre'
 
