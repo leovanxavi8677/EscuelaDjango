@@ -1,6 +1,6 @@
 from django.db import models
-from django.core.validators import validate_integer
-from django.core.validators import RegexValidator
+from django.core.validators import validate_integer, validate_slug
+
 
 GENERO_CHOICES = [
     ('M', 'MASCULINO'),
@@ -8,14 +8,14 @@ GENERO_CHOICES = [
 ]
 
 ESTUDIOS_CHOICES =[
-    ('1','Primaria'),
-    ('2','Secundaria'),
-    ('3','Bachillerato'),
-    ('4','Licenciatura'),
-    ('5','Especialidad'),
-    ('6','Maestria'),
-    ('7','Doctorado'),
-    ('8','Post-Doctorado')
+    ('1', 'Primaria'),
+    ('2', 'Secundaria'),
+    ('3', 'Bachillerato'),
+    ('4', 'Licenciatura'),
+    ('5', 'Especialidad'),
+    ('6', 'Maestria'),
+    ('7', 'Doctorado'),
+    ('8', 'Post-Doctorado')
 ]
 
 NIVEL_ACCESO_CHOICES = [
@@ -28,17 +28,13 @@ NIVEL_ACCESO_CHOICES = [
 
 
 class Persona(models.Model):
-    """
-       validar letras
-       """
 
-    alphaSpaces = RegexValidator(r'^[a-zA-Z ]+$', 'Solo se permiten letras y espacios', 'nombre invalido')
 
 
     """
     atributos de la persona
     """
-    nombre = models.CharField(max_length=60, null=False, blank=False, validators=[alphaSpaces])
+    nombre = models.CharField(max_length=60, null=False, blank=False)
     apellidoPaterno = models.CharField(max_length=50, null=False, blank=False)
     apellidoMaterno = models.CharField(max_length=50, null=False, blank=False)
     fechaNacimiento = models.DateField(null=False, blank=False)
@@ -46,7 +42,7 @@ class Persona(models.Model):
     nivelEstudios = models.CharField(max_length=1, null=False, blank=False, choices=ESTUDIOS_CHOICES)
     genero = models.CharField(max_length=1, null=False, blank=False, choices=GENERO_CHOICES)
     nivelAcceso = models.CharField(max_length=1, null=False, blank=False, choices=NIVEL_ACCESO_CHOICES)
-    passwd = models.CharField(max_length=150, blank=False, null=False)
+    passwd = models.CharField(max_length=150, blank=False, null=False, validators=[validate_slug])
 
 
 

@@ -1,6 +1,7 @@
 from django.db import models
 from ..materias.models import Materia
 from ..maestros.models import Maestro
+from django.core.validators import validate_integer, validate_slug
 
 ESTATUS_CHOICES=[
     ('1', 'Alta'),
@@ -9,8 +10,8 @@ ESTATUS_CHOICES=[
 ]
 
 class Grupo(models.Model):
-    nombre = models.CharField(max_length=60, blank=False, null=False)
-    numeroAlumnos = models.PositiveSmallIntegerField(blank=False, null=False)
+    nombre = models.CharField(max_length=60, blank=False, null=False, validators=[validate_slug])
+    numeroAlumnos = models.IntegerField(blank=False, null=False, validators=[validate_integer])
     estatus = models.CharField(max_length=1, blank=False, null=False, choices=ESTATUS_CHOICES)
     materia = models.ForeignKey(Materia, related_name="gruposMaterias", on_delete=models.CASCADE, null=True,
                                 help_text="Selecione una Materia")

@@ -21,12 +21,16 @@ SEMESTRE_CHOICES= [
 class Estudiante(Persona):
     matricula = models.CharField(max_length=13, null=False, blank=False, validators=[validate_slug])
     semestre = models.CharField(max_length=2, null=False, blank=False, choices=SEMESTRE_CHOICES)
-    numeroMateriasCursando= models.CharField(max_length=2,  null=False, blank=False, validators=[validate_integer])
+    numeroMateriasCursando= models.CharField(max_length=2,  null=False, blank=False,
+                                             validators=[validate_integer])
     #tengo duda sobre como poner un default
-    totalNumeroMateriasAprobadas= models.CharField(max_length=2, null=False, blank=False, default=0, validators=[validate_integer])
+    totalNumeroMateriasAprobadas= models.CharField(max_length=2, null=False, blank=False, default=0,
+                                                   validators=[validate_integer])
     #tengo duda sobre como poner un default
     totalNumerosMateriasReprobadas= models.CharField(max_length=2, default=0, validators=[validate_integer])
-    programaEducativo= models.ForeignKey(ProgramaEducativo,help_text="Seleccione un Programa Educativo",related_name="estudianteProgramaEducativo",on_delete=models.CASCADE,null=True)
+    programaEducativo= models.ForeignKey(ProgramaEducativo, help_text="Seleccione un Programa Educativo",
+                                         related_name="estudianteProgramaEducativo",
+                                         on_delete=models.CASCADE,null=True)
     materias = models.ManyToManyField(Materia, related_name="estudianteMateria")
     
     

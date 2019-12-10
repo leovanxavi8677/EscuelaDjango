@@ -1,5 +1,6 @@
 from django.db import models
 from ..areaestudiomateria.models import AreaEstudioMateria
+from django.core.validators import validate_slug
 
 ESTATUS_MATERIA=[
     ('1', 'Alta'),
@@ -10,7 +11,7 @@ ESTATUS_MATERIA=[
 
 
 class Materia(models.Model):
-    nombre = models.CharField(max_length=30, blank=False, null=False)
+    nombre = models.CharField(max_length=30, blank=False, null=False, validators=[validate_slug])
     estatusMateria = models.CharField(max_length=1, blank=False, null=False, choices=ESTATUS_MATERIA)
     areaEstudio = models.ForeignKey(AreaEstudioMateria, related_name="materiaAreaEstudioMateria",
                                     on_delete=models.CASCADE,null=True,

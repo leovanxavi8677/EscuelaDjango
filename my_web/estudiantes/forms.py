@@ -1,6 +1,8 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from .models import Estudiante
 from django.forms.widgets import DateInput
+import re
+from django import forms
 
 class EstudianteForm(ModelForm):
 
@@ -25,12 +27,20 @@ class EstudianteForm(ModelForm):
                   'materias'
                   ]
         required = ['nombre',
-                    'apellidoPaterno',
-                    'apellidoMaterno',
-                    'matricula',
-                    'numeroMateriasCursando',
-                     'totalNumeroMateriasAprobadas',
-                    'totalNumerosMateriasReprobadas',
+                  'apellidoPaterno',
+                  'apellidoMaterno',
+                  'fechaNacimiento',
+                  'edad',
+                  'nivelEstudios',
+                  'genero',
+                  'nivelAcceso',
+                  'matricula',
+                  'semestre',
+                  'numeroMateriasCursando',
+                  'totalNumeroMateriasAprobadas',
+                  'totalNumerosMateriasReprobadas',
+                  'programaEducativo',
+                  'materias'
                     ]
         widgets = {
             'fechaNacimiento': DateInput(format= ('%Y-%m-%d'),
@@ -43,3 +53,11 @@ class EstudianteForm(ModelForm):
                                          )
 
         }
+
+        def clean(self):
+            pattern_letter_and_space= re.compile('[a-zA-z ]+$')
+            nombre = self.cleaned_data.get('nombre')
+            if pattern_letter_and_space.match(nombre):
+                return nombre
+            else:
+                raise forms.ValidationError("No es un nombre Valido")

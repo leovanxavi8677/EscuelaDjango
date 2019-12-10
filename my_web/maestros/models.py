@@ -1,6 +1,7 @@
 from ..personas.models import Persona
 from django.db import models
 from ..areamaestro.models import AreaMaestro
+from django.core.validators import validate_slug
 
 ESTATUS_CHOICES = [
     ('A', 'Activo'),
@@ -10,8 +11,8 @@ ESTATUS_CHOICES = [
 ]
 
 class Maestro(Persona):
-    cubiculo = models.CharField(max_length=50, blank=False, null=False)
-    numeroTrabajador = models.CharField(max_length=13, blank=False, null=False)
+    cubiculo = models.CharField(max_length=50, blank=False, null=False, validators=[validate_slug])
+    numeroTrabajador = models.CharField(max_length=13, blank=False, null=False, validators=[validate_slug])
     estatus = models.CharField(max_length=2, blank=False, null=False, choices=ESTATUS_CHOICES)
     areamaestro = models.ForeignKey(AreaMaestro, help_text="Seleccione un Área",related_name="maestroAreaExpertise", on_delete=models.CASCADE, null=True)
     
