@@ -13,7 +13,6 @@ class MaestroForm(ModelForm):
             'edad',
             'nivelEstudios',
             'genero',
-            'nivelAcceso',
             'cubiculo',
             'numeroTrabajador',
             'estatus',
@@ -27,7 +26,6 @@ class MaestroForm(ModelForm):
             'edad',
             'nivelEstudios',
             'genero',
-            'nivelAcceso',
             'cubiculo',
             'numeroTrabajador',
             'estatus',
@@ -35,7 +33,7 @@ class MaestroForm(ModelForm):
 
         ]
         widgets = {
-            'fechaNacimiento': DateInput(format=('%Y-%m-%d'),
+            'fechaNacimiento': DateInput(format= ('%Y-%m-%d'),
                                          attrs={
                                              'placeholder': 'Ingresa la fecha de nacimiento',
                                              'type': 'date',

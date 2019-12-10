@@ -23,7 +23,9 @@ def RegistrarMaestro(request):
                 ))
                 return HttpResponseRedirect(reverse('RegistrarMaestroNuevo'))
             else:
-                form.save()
+                post = form.save(commit=False)
+                post.nivelAcceso = 'C'
+                post.save()
                 messages.success(request, "Se ha registrado exitosamente el Maestr@ con Número de Trabajador {} ".format(
                     form.cleaned_data['numeroTrabajador']
                 ))

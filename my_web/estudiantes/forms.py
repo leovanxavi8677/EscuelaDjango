@@ -17,7 +17,6 @@ class EstudianteForm(ModelForm):
                   'edad',
                   'nivelEstudios',
                   'genero',
-                  'nivelAcceso',
                   'matricula',
                   'semestre',
                   'numeroMateriasCursando',
@@ -33,7 +32,6 @@ class EstudianteForm(ModelForm):
                   'edad',
                   'nivelEstudios',
                   'genero',
-                  'nivelAcceso',
                   'matricula',
                   'semestre',
                   'numeroMateriasCursando',
@@ -53,11 +51,27 @@ class EstudianteForm(ModelForm):
                                          )
 
         }
+        """
+        def clean_nombre(self):
+            nombre = self.cleaned_data['nombre']
+            if not nombre.isalpha():
+                raise forms.ValidationError('Primero nombre debe contener solo letras')
+            return nombre
+        """
 
-        def clean(self):
-            pattern_letter_and_space= re.compile('[a-zA-z ]+$')
+        def clean_matricula(self):
+            matricula= self.cleaned_data.get('matricula')
+            for instance in Estudiante.objects.all():
+                if instance.matricula == matricula:
+                    raise forms.ValidationError('Ya existe una matricula {}'.format(
+                        matricula
+                    ))
+            return matricula
+
+        def clean_nombre(self):
+            pattern_letter_and_space = re.compile('[a-zA-z ]+$')
             nombre = self.cleaned_data.get('nombre')
             if pattern_letter_and_space.match(nombre):
-                return nombre
+                pass
             else:
                 raise forms.ValidationError("No es un nombre Valido")

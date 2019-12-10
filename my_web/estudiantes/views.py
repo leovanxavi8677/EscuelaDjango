@@ -23,7 +23,9 @@ def RegistrarEstudiante(request):
                 ))
                 return HttpResponseRedirect(reverse('RegistrarEstudianteNuevo'))
             else:
-                form.save()
+                post = form.save(commit=False)
+                post.nivelAcceso = 'E'
+                post.save()
                 messages.success(request, "Se ha registrado exitosamente el Esudidante con matricula {} ".format(
                     form.cleaned_data['matricula']
                 ))
@@ -42,7 +44,7 @@ def estudainte_detalle(request, estudiante_id=None):
             form = EstudianteForm(request.POST, instance=estudiante)
             if form.is_valid():
                 matricula_vieja=estudiante.get_matricula
-                matricula_nueva=form.cleaned_data['matricula']
+                matricula_nueva=form.cleaned_data.get['matricula']
                 messages.info(request, 'matricula vieja {} y matricula nueva {}'.format(matricula_vieja, matricula_nueva))
 
                 if matricula_nueva == matricula_vieja: #si la matricula es la misma puede hacer los cambios
@@ -115,10 +117,22 @@ def ObtenerTodosEstudiantes(request):
     estudiantes_per_page = paginator.get_page(page)
     lista_data = {
         'lista': lista,
-        'columnas':[
-            'Id', 'Nombre', 'Fecha Nacimiento', 'Edad', 'Nivel Estudios', 'Genero', 'Nivel Acceso', 'Matricula',
-            'Semestre', 'Número Materias Cursando', 'Total Materias Aprobadas', 'Total Materias Reprobadas',
-            'Programa Educativo', 'Materias', 'Detalle'
+        'columnas': [
+            'Id',
+            'Nombre',
+            'Fecha Nacimiento',
+            'Edad',
+            'Nivel Estudios',
+            'Genero',
+            'Nivel Acceso',
+            'Matricula',
+            'Semestre',
+            'Número Materias Cursando',
+            'Total Materias Aprobadas',
+            'Total Materias Reprobadas',
+            'Programa Educativo',
+            'Materias',
+            'Detalle'
         ]
     }
     context = {

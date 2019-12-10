@@ -2,7 +2,7 @@ from django.db import models
 from ..areaestudiomateria.models import AreaEstudioMateria
 from django.core.validators import validate_slug
 
-ESTATUS_MATERIA=[
+ESTATUS_MATERIA = [
     ('1', 'Alta'),
     ('2', 'Pendiente'),
     ('3', 'Baja')
