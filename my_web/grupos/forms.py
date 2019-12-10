@@ -4,4 +4,17 @@ from .models import Grupo
 class GrupoForm(ModelForm):
     class Meta:
         model = Grupo
-        fields = ['nombre', 'numeroAlumnos', 'estatus', 'materia', 'maestroAsignado']
+        fields = ['nombre',
+                  'numeroAlumnos',
+                  'estatus',
+                  'materia',
+                  'maestroAsignado'
+                  ]
+
+        required = [
+                    'nombre',
+                    'numeroAlumnos',
+                    'estatus',
+                    'materia',
+                    'maestroAsignado'
+                    ]

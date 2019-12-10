@@ -5,3 +5,4 @@ class ProgramaEducativoForm(ModelForm):
     class Meta:
         model = ProgramaEducativo
         fields = ['nombre']
+        required = ['nombre']

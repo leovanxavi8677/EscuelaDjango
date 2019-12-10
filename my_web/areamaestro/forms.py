@@ -5,3 +5,4 @@ class AreaMaestroForm(ModelForm):
     class Meta:
         model = AreaMaestro
         fields = ['area']
+        required = ['area']

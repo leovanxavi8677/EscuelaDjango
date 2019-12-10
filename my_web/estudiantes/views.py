@@ -41,15 +41,26 @@ def estudainte_detalle(request, estudiante_id=None):
         if request.method == 'POST':
             form = EstudianteForm(request.POST, instance=estudiante)
             if form.is_valid():
-                if Estudiante.objects.filter(matricula=form.cleaned_data['matricula']):
-                    messages.info(request, 'La matricula {} ya esta registrada'.format(form.cleaned_data['matricula']))
-                    return HttpResponseRedirect(reverse('DetalleEstudiante', kwargs={
-                        'estudiante_id': estudiante_id
-                    }))
-                else:
+                matricula_vieja=estudiante.get_matricula
+                matricula_nueva=form.cleaned_data['matricula']
+                messages.info(request, 'matricula vieja {} y matricula nueva {}'.format(matricula_vieja, matricula_nueva))
+
+                if matricula_nueva == matricula_vieja: #si la matricula es la misma puede hacer los cambios
+                    messages.info(request, 'no nay cambio matricula')
                     form.save()
                     messages.success(request, 'Se ha actualizado el registro')
                     return HttpResponseRedirect(reverse('ObtenerTodosEstudiantes'))
+                else:#si la matricula la cambio
+                    messages.info(request, 'entro en cambio')
+                    if Estudiante.objects.filter(Q(matricula=form.cleaned_data['matricula'])):
+                        messages.info(request, 'La matricula {} ya esta registrada'.format(form.cleaned_data['matricula']))
+                        return HttpResponseRedirect(reverse('DetalleEstudiante', kwargs={
+                            'estudiante_id': estudiante_id
+                        }))
+                    else:
+                        form.save()
+                        messages.success(request, 'Se ha actualizado el registro')
+                        return HttpResponseRedirect(reverse('ObtenerTodosEstudiantes'))
 
         else:
             form = EstudianteForm(instance=estudiante)

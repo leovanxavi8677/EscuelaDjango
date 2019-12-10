@@ -137,11 +137,11 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'/')
+STATIC_ROOT = os.path.join(BASE_DIR, '/')
 
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR,"static"),
+    os.path.join(PROJECT_DIR, "static"),
     '/project/my_web/my_web/static/',
 
 ]
