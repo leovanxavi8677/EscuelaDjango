@@ -82,8 +82,8 @@ def ObtenerTodosGrupos(request):
                 3: grupo.get_estatus,
                 4: grupo.get_materia_grupo,
                 5: grupo.get_maestro_asignado,
-                'link':{
-                    'url': reverse('DetalleGrupo',kwargs={
+                'link': {
+                    'url': reverse('DetalleGrupo', kwargs={
                         'grupo_id':grupo.id
                     }),
                     'label': 'Detalle'
