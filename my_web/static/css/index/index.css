@@ -1,0 +1,24 @@
+body {
+    background-image: url("../../img/index/wallpaper_escuela.jpeg") ;
+    
+}
+
+.btn-primary{
+    align-items: center;
+}
+
+label{
+    color: black ;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+.frm_login{
+    
+
+}
+
+button{
+    text-align: center;
+}
