@@ -1,0 +1,30 @@
+.navbar{
+    background-image: url("../../img/index/image_pagina_principal.jpeg");
+}
+
+.nav-link dropdown-toggle{
+    color: cyan !important;
+    
+}
+
+li {
+    text-align: center;
+    
+  }
+  
+
+
+.dropdown-menu:hover{
+    background-color: black;
+    color: white;
+
+}
+
+.dropdown-item:hover:not(.active) {
+    background-color: black;
+    color: white;
+  }
+
+
+
+  

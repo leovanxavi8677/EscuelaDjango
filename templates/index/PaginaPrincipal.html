@@ -4,7 +4,10 @@
     Pagina Principal
 {% endblock %}
 
+
 {% block bootstrap4_content %}
+{% load staticfiles %}
+<link rel="stylesheet"  href="{% static 'css/index/paginaprincipal.css' %}">
 {% include "index/menu.html" %}
   {{block.super}}
 {% endblock %}

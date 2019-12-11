@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 
 
 
 {% block app_content %}
+
+<link rel="stylesheet"  href="{% static 'css/listing.css' %}">
 
     {{ block.super }}
 <form class="form-inline md-form mr-auto mb-4" method="get">
@@ -12,8 +14,8 @@
         <button type="submit" class="btn btn-primary">Buscar</button>
     </div>
 </form>
-<table class="table table-hover table-striped">
-        <thead class="thead-dark">
+<table class="table table-hover table-striped table-borderless table-responsive-xl table-dark">
+        <thead class="thead-light">
             <tr>
                 {% for columna in lista.columnas  %}
                     <th>{{ columna }}</th>
@@ -25,9 +27,10 @@
                 {% for column, label in line.items %}
                     {% if column == 'link' %}
                         <td>
-                            <a href="{{ label.url }}">
+                            <a href="{{ label.url }}" class="btn btn-outline-info">
                                 {{ label.label }}
                             </a>
+                            
                         </td>
                     {% else %}
                         <td>{{ label }}</td>

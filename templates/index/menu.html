@@ -1,3 +1,6 @@
+{% load staticfiles %}
+<link rel="stylesheet"  href="{% static 'css/index/menu.css' %}">
+
 <!-----<h1>{{request.session.nivel_acceso}}</h1>----->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{% url 'paginaprincipal' %}">Pagina Principal</a>
@@ -12,8 +15,8 @@
             Area Estudio Materia
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="../areaestudiomateria/RegistrarAreaEstudioMateria.html">Registrar Nueva Area de Estudio Materia</a>
-            <a class="dropdown-item" href="../areaestudiomateria/MostrarTodasAreasEstudioMaterias.html">Buscar Area de Estudio Materia</a>
+            <a class="dropdown-item" href="{% url 'RegistrarNuevaAreaEstudioMateria'  %}">Registrar Nueva Area de Estudio Materia</a>
+            <a class="dropdown-item" href="{% url 'ListingAreasEstudioMaterias' %}">Buscar Area de Estudio Materia</a>
           </div>
         </li>
         {% endif %}
@@ -24,8 +27,8 @@
                   Area Maestro
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="../areamaestro/RegistrarAreaMaestro.html">Registrar Nueva Área de Maestros</a>
-                  <a class="dropdown-item" href="../areamaestro/MostrarTodasAreasMaestro.html">Buscar Area de Maestro</a>
+                  <a class="dropdown-item" href="{% url 'RegistrarAreaMaestro' %}">Registrar Nueva Área de Maestros</a>
+                  <a class="dropdown-item" href="{% url 'ObtenerTodosAreasMaestro' %}">Buscar Area de Maestro</a>
                 </div>
         </li>
         {% endif %}
@@ -37,10 +40,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if request.session.nivel_acceso == 'A' %}
-                  <a class="dropdown-item" href="../estudiantes/RegistrarEstudiante.html">Registrar Nueva Estudiante</a>
+                  <a class="dropdown-item" href="{% url 'RegistrarEstudianteNuevo' %}">Registrar Nueva Estudiante</a>
                     {% endif %}
                     {% if request.session.nivel_acceso == 'A' or request.session.nivel_acceso == 'C' %}
-                  <a class="dropdown-item" href="../estudiantes/MostrarTodosEstudiantes.html">Buscar Estudiante</a>
+                  <a class="dropdown-item" href="{% url 'ObtenerTodosEstudiantes' %}">Buscar Estudiante</a>
                     {% endif %}
                 </div>
         </li>
@@ -52,7 +55,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {% if request.session.nivel_acceso == 'A' %}
-                  <a class="dropdown-item" href="../grupos/RegistrarGrupo.html">Registrar Nuevo Grupo</a>
+                  <a class="dropdown-item" href="{% url 'RegistrarGrupoNuevo' %}">Registrar Nuevo Grupo</a>
                 {% endif %}
                   <a class="dropdown-item" href="{% url 'ObtenerTodosGrupos'  %}">Buscar Grupo</a>
                 </div>
@@ -64,9 +67,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {% if request.session.nivel_acceso == 'A' %}
-                  <a class="dropdown-item" href="../maestros/RegistrarMaestro.html">Registrar Maestro</a>
+                  <a class="dropdown-item" href="{% url 'RegistrarMaestro' %}">Registrar Maestro</a>
                 {% endif %}
-                  <a class="dropdown-item" href="../maestros/MostrarTodosMaestros.html">Buscar Maestro</a>
+                  <a class="dropdown-item" href="{% url 'ObtenerTodosMaestros' %}">Buscar Maestro</a>
                 </div>
         </li>
 
@@ -77,9 +80,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {% if request.session.nivel_acceso == 'A' %}
-                  <a class="dropdown-item" href="../materias/RegistrarMateria.html">Registrar Materia</a>
+                  <a class="dropdown-item" href="{% url 'RegistrarMateria'  %}">Registrar Materia</a>
                 {% endif %}
-                  <a class="dropdown-item" href="../materias/MostrarTodasMaterias.html">Buscar Materia</a>
+                  <a class="dropdown-item" href="{% url 'ObtenerTodasMaterias' %}">Buscar Materia</a>
                 </div>
         </li>
 
@@ -89,8 +92,8 @@
                   Programas Educativos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="../programaeducativo/RegistrarProgramaEducativo.html">Registrar Programa Educativo</a>
-                  <a class="dropdown-item" href="../programaeducativo/MostrarTodosProgramasEducativos.html">Buscar Programa Educativo</a>
+                  <a class="dropdown-item" href="{% url 'RegistrarProgramaEducativo' %}">Registrar Programa Educativo</a>
+                  <a class="dropdown-item" href="{% url 'ObtenerTodosProgramasEducativos' %}">Buscar Programa Educativo</a>
                 </div>
         </li>
         {% endif %}
