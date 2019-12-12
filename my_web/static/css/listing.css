@@ -1,3 +1,24 @@
-.form-group{
+
+
+
+
+.page-link{
+    background-color: white;
+    color: black;
+    border: none;
+    
+}
+
+.page-link:hover{
+    background-color: black;
+    color: white;
+}
+
+.page-link:hover:active{
+    background-color: tomato;
+}
+
+.form-inline{
     align-items: center;
 }
+
