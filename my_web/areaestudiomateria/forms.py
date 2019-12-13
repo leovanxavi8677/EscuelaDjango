@@ -12,7 +12,7 @@ class AreaEstudioMateriaForm(ModelForm):
 
         widgets = {
             'area': TextInput(attrs={
-                'class': 'txt_area',
+                'class': 'md-form',
                 'id': 'txt_area',
                 'name': 'txt_area',
                 'onKeyPress': 'return ValidateAlpha(event);',

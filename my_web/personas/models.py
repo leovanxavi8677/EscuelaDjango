@@ -38,7 +38,7 @@ class Persona(models.Model):
     apellidoPaterno = models.CharField(max_length=50, null=False, blank=False)
     apellidoMaterno = models.CharField(max_length=50, null=False, blank=False)
     fechaNacimiento = models.DateField(null=False, blank=False)
-    edad = models.IntegerField(blank=False, validators=[validate_integer])
+    edad = models.CharField(max_length=2, blank=False, validators=[validate_integer])
     nivelEstudios = models.CharField(max_length=1, null=False, blank=False, choices=ESTUDIOS_CHOICES)
     genero = models.CharField(max_length=1, null=False, blank=False, choices=GENERO_CHOICES)
     nivelAcceso = models.CharField(max_length=1, null=False, blank=False, choices=NIVEL_ACCESO_CHOICES)

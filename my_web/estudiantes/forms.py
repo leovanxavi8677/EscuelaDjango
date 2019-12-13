@@ -64,14 +64,14 @@ class EstudianteForm(ModelForm):
                 'onKeyPress': 'return ValidateAlpha(event);',
 
             }),
-            'edad': NumberInput(attrs={
+            'edad': TextInput(attrs={
                 'class': 'txt_edad',
                 'id': 'txt_edad',
                 'name': 'txt_edad',
                 'onkeypress': 'return isNumberKey(event);',
 
             }),
-            'matricula': NumberInput(attrs={
+            'matricula': TextInput(attrs={
                 'class': 'txt_matricula',
                 'id': 'txt_matricula',
                 'name': 'txt_matricula',

@@ -13,6 +13,17 @@ h1{
     blink-caret .5s step-end infinite;
 }
 
+/* input text*/
+input[type=text] {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input[type=text]:focus {
+    border-color:#333;
+}
 
 /* The typing effect */
 @keyframes typing {
@@ -84,7 +95,16 @@ label:after { content: ": " }
     transition: all 0.3s ease 0s;
 }
 
-
-select:hover{
-    background-color: blueviolets !important;
+/* Select */
+select
+{
+    color: #ccc;
+}
+option
+{
+    color: #000;
+}
+option:first-child
+{
+    color: #ccc;
 }

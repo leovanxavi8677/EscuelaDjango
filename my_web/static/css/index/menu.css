@@ -2,10 +2,7 @@
     background-image: url("../../img/index/image_pagina_principal.jpeg");
 }
 
-.nav-link dropdown-toggle{
-    color: cyan !important;
-    
-}
+
 
 li {
     text-align: center;
@@ -14,9 +11,24 @@ li {
   
 
 
+.nav-link{
+   
+    color:white;
+    font-size: 25px;
+    
+}
+
+.dropdown-menu{
+    opacity: 0.5;
+    
+    color: white;
+
+
+}
 .dropdown-menu:hover{
     background-color: black;
     color: white;
+    opacity: 0.4;
 
 }
 
@@ -24,7 +36,3 @@ li {
     background-color: black;
     color: white;
   }
-
-
-
-  
