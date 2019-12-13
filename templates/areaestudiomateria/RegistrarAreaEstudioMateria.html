@@ -1,5 +1,5 @@
 {% extends "detail.html" %}
-
+{% load staticfiles %}
 {% load bootstrap4 %}
 
 {% block title %}
@@ -9,6 +9,7 @@
 
 
 {% block app_content %}
+<script src="{% static 'js/areaestudiomateria/registrarareaestudiomateria.js' %}"></script>
 <h1> Registrar Materia </h1>
     {{ block.super }}
 

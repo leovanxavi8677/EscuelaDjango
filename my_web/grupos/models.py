@@ -11,7 +11,7 @@ ESTATUS_CHOICES=[
 
 class Grupo(models.Model):
     nombre = models.CharField(max_length=60, blank=False, null=False, validators=[validate_slug])
-    numeroAlumnos = models.IntegerField(blank=False, null=False, validators=[validate_integer])
+    numeroAlumnos = models.CharField(max_length=2,blank=False, null=False, validators=[validate_integer])
     estatus = models.CharField(max_length=1, blank=False, null=False, choices=ESTATUS_CHOICES)
     materia = models.ForeignKey(Materia, related_name="gruposMaterias", on_delete=models.CASCADE, null=True,
                                 help_text="Selecione una Materia")

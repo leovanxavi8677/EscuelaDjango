@@ -1,0 +1,19 @@
+input[type=text]{
+    color: blue;
+}
+
+h1{
+    text-align: center;
+}
+label{
+    font-weight: bold;
+    width: 150px;
+}
+label:after { content: " : " }
+
+label:hover{
+    
+    border-color: black;
+    
+}
+

@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from .models import Grupo
+from django.forms.widgets import  TextInput, Select, SelectMultiple, NumberInput
 
 class GrupoForm(ModelForm):
     class Meta:
@@ -18,3 +19,21 @@ class GrupoForm(ModelForm):
                     'materia',
                     'maestroAsignado'
                     ]
+        widgets = {
+            'nombre': TextInput(attrs={
+                'class': 'txt_nombre',
+                'id': 'txt_nomnbre',
+                'name': 'txt_nombre',
+                'onKeyPress': 'return ValidateAlpha(event);',
+
+            }),
+            'numeroAlumnos': NumberInput(attrs={
+                'class': 'txt_numeroAlumnos',
+                'id': 'txt_numeroAlumnos',
+                'name': 'txt_numeroAlumnos',
+                'onkeypress': 'return isNumberKey(event);',
+                'maxlenght': '2',
+
+            }),
+            
+        }

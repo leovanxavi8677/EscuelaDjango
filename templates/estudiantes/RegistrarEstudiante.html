@@ -1,7 +1,7 @@
 {% extends "detail.html" %}
-
+{% load staticfiles %}
 {% load bootstrap4 %}
-
+{% bootstrap_javascript %}
 {% block title %}
     Registrar Estudiante
 {% endblock %}
@@ -9,6 +9,12 @@
 
 
 {% block app_content %}
+<link rel="stylesheet"  href="{% static 'css/estudiantes/registrarestudiante.css' %}">
+
+<script src="{% static 'js/estudiantes/registrarestudiante.js' %}"></script>
+
+
+<h1> Registrar Estudiante </h1>
     {{ block.super }}
 
 
