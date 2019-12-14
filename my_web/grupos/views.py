@@ -70,6 +70,8 @@ def ObtenerTodosGrupos(request):
             query = '3'
         grupos = Grupo.objects.filter(Q(nombre__icontains=query) | Q(estatus__icontains=query)|
                                       Q(materia__nombre__icontains=query) | Q(maestroAsignado__nombre__icontains=query))
+        if not grupos:
+            messages.info(request, 'No Se encontro el Grupo {}'.format(query))
     else:
         grupos = Grupo.objects.all()
     lista = []

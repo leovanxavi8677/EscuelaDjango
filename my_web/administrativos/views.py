@@ -59,6 +59,8 @@ def ObtenerTodosAdministrativos(request):
     if query:
         administrativos = Administrativo.objects.filter(Q(nombre__icontains=query) | Q(numeroAdministrativo__icontains=query)
                                                 | Q(apellidoPaterno__icontains=query) | Q(apellidoMaterno__icontains=query ))
+        if not administrativos:
+            messages.info(request, 'No Se encontro el Administrativo {}'.format(query))
     else:
         administrativos = Administrativo.objects.all()
     lista = []

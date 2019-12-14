@@ -82,6 +82,8 @@ def ObtenerTodosMaestros(request):
         maestros = Maestro.objects.filter(Q(nombre__icontains=query) | Q(estatus__icontains=query) |
                                           Q(numeroTrabajador__icontains=query)
                                           | Q(apellidoPaterno__icontains=query) | Q(apellidoMaterno__icontains=query ))
+        if not maestros:
+            messages.info(request, 'No Se encontro el Maestro {}'.format(query))
     else:
         maestros = Maestro.objects.all()
     lista = []

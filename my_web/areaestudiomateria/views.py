@@ -65,6 +65,8 @@ def ObtenerTodosAreasEstudioMateria(request):
     if query:
         query = request.GET.get('buscar')
         areas = AreaEstudioMateria.objects.filter(area__icontains=query)
+        if not areas:
+            messages.info(request, 'No Se encontro el Área de Estudio {}'.format(query))
     else:
         areas = AreaEstudioMateria.objects.all()
     lista = []

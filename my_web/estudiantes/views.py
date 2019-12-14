@@ -82,6 +82,8 @@ def ObtenerTodosEstudiantes(request):
     if query:
         estudiantes = Estudiante.objects.filter(Q(nombre__icontains=query) | Q(matricula__icontains=query)
                                                 | Q(apellidoPaterno__icontains=query) | Q(apellidoMaterno__icontains=query ))
+        if not estudiantes:
+            messages.info(request, 'No Se encontro el Estudiante  {}'.format(query))
     else:
         estudiantes = Estudiante.objects.all()
     lista = []

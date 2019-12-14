@@ -70,6 +70,9 @@ def ObtenerTodasMaterias(request):
             query = '3'
         materias = Materia.objects.filter(Q(nombre__icontains=query) | Q(estatusMateria__icontains=query) |
                                           Q(areaEstudio__area__icontains=query))
+        if not materias:
+            messages.info(request, 'No Se encontro la materia {}'.format(query))
+
     else:
         materias = Materia.objects.all()
     lista = []

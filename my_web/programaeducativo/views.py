@@ -65,6 +65,8 @@ def ObtenerTodosProgramasEducativos(request):
     query = request.GET.get('buscar')
     if query:
         programas_educativos = ProgramaEducativo.objects.filter(Q(nombre__icontains=query))
+        if not programas_educativos:
+            messages.info(request, 'No Se encontro el Programa Educativo {}'.format(query))
     else:
         programas_educativos = ProgramaEducativo.objects.all()
     lista = []

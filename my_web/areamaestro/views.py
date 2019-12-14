@@ -61,6 +61,8 @@ def ObtenerTodosAreasMaestro(request):
     if query:
         query = request.GET.get('buscar')
         areas = AreaMaestro.objects.filter(area__icontains=query)
+        if not areas:
+            messages.info(request, 'No Se encontro el Área de Maestro {}'.format(query))
     else:
         areas = AreaMaestro.objects.all()
     lista = []
