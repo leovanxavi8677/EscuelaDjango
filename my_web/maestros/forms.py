@@ -63,12 +63,18 @@ class MaestroForm(ModelForm):
                 'onKeyPress': 'return ValidateAlpha(event);',
 
             }),
-            'edad': NumberInput(attrs={
+            'edad': TextInput(attrs={
                 'class': 'txt_edad',
                 'id': 'txt_edad',
                 'name': 'txt_edad',
                 'onkeypress': 'return isNumberKey(event);',
 
+            }),
+            'nivelEstudios': Select(attrs={
+                'class': 'custom-select mr-sm-2'
+            }),
+            'genero': Select(attrs={
+                'class': 'custom-select mr-sm-2'
             }),
             'cubiculo': TextInput(attrs={
                 'class': 'txt_cubiculo',
@@ -84,5 +90,13 @@ class MaestroForm(ModelForm):
                 'onkeypress': ' return lettersAndNumbers(event);',
 
             }),
+            'estatus': Select(attrs={
+                'class': 'custom-select mr-sm-2'
+
+            }),
+            'areamaestro': Select(attrs={
+                'class': 'custom-select mr-sm-2'
+
+            })
 
         }

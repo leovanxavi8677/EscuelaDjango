@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'my_web.materias',
     'my_web.grupos',
     'my_web.index',
+    'my_web.administrativos',
     'bootstrap4',
 ]
 

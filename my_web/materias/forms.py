@@ -22,4 +22,10 @@ class MateriaForm(ModelForm):
                 'onkeypress': ' return lettersAndNumbers(event);',
 
             }),
+            'estatusMateria': Select(attrs={
+                'class': 'custom-select mr-sm-2'
+            }),
+            'areaEstudio': Select(attrs={
+                'class': 'custom-select mr-sm-2'
+            })
         }

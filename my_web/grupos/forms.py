@@ -27,7 +27,7 @@ class GrupoForm(ModelForm):
                 'onKeyPress': 'return ValidateAlpha(event);',
 
             }),
-            'numeroAlumnos': NumberInput(attrs={
+            'numeroAlumnos': TextInput(attrs={
                 'class': 'txt_numeroAlumnos',
                 'id': 'txt_numeroAlumnos',
                 'name': 'txt_numeroAlumnos',
@@ -35,5 +35,14 @@ class GrupoForm(ModelForm):
                 'maxlenght': '2',
 
             }),
+            'estatus': Select(attrs={
+                'class': 'custom-select mr-sm-2'
+            }),
+            'materia': Select(attrs={
+                'class': 'custom-select mr-sm-2'
+            }),
+            'maestroAsignado': Select(attrs={
+                'class': 'custom-select mr-sm-2'
+            })
             
         }
